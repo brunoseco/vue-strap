@@ -339,5 +339,5 @@ export default {
   text-overflow: ellipsis !important;
   margin-bottom: -4px !important;
 }
-.btn-group-justified .dropdown-menu { width: 100% !important; }
+.dropdown-menu { width: 100% !important; }
 </style>
