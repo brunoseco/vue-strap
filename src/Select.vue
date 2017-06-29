@@ -16,16 +16,15 @@
     </select>
     <ul class="dropdown-menu">
       <template v-if="list.length">
-        <li v-if="canSearch" class="bs-searchbox">
+        <li v-if="canSearch" class="input-group padding-5 dropdown-item">
           <input type="text" :placeholder="searchText||text.search" class="form-control" autocomplete="off" ref="search"
             v-model="searchValue"
             @keyup.esc="close"
           />
-          <span v-show="searchValue" class="close" @click="clearSearch">&times;</span>
         </li>
-        <li v-if="required&&!clearButton"><a @mousedown.prevent="clear() && close()">{{ placeholder || text.notSelected }}</a></li>
-        <li v-for="option in filteredOptions" :id="option[optionsValue]">
-          <a @mousedown.prevent="select(option[optionsValue])">
+        <li class="dropdown-item" v-if="required&&!clearButton"><a @mousedown.prevent="clear() && close()">{{ placeholder || text.notSelected }}</a></li>
+        <li class="dropdown-item" v-for="option in filteredOptions" :id="option[optionsValue]" @mousedown.prevent="select(option[optionsValue])">
+          <a @mousedown.prevent="">
             <span v-html="option[optionsLabel]"></span>
             <span class="glyphicon glyphicon-ok check-mark" v-show="isSelected(option[optionsValue])"></span>
           </a>
@@ -84,7 +83,7 @@ export default {
   },
   computed: {
     canSearch () { return this.minSearch ? this.list.length >= this.minSearch : this.search },
-    classes () { return [{open: this.show, disabled: this.disabled}, this.class, this.isLi ? 'dropdown' : this.inInput ? 'input-group-btn' : 'btn-group'] },
+    classes() { return [{ open: this.show, disabled: this.disabled }, this.class, this.isLi ? 'dropdown' : this.inInput ? 'input-group-btn' : 'input-group'] },
     filteredOptions () {
       var search = (this.searchValue || '').toLowerCase()
       return !search ? this.list : this.list.filter(el => {
@@ -261,82 +260,84 @@ export default {
 </script>
 
 <style scoped>
+.padding-5 {
+  padding: 5px;
+}
 .form-control.dropdown-toggle{
-  height: auto;
-  padding-right: 24px;
+  height: auto !important;
+  padding-right: 24px !important;
 }
 .form-control.dropdown-toggle:after{
-  content: ' ';
-  position: absolute;
-  right: 13px;
-  top: 50%;
-  margin: -1px 0 0;
-  border-top: 4px dashed;
-  border-top: 4px solid \9;
-  border-right: 4px solid transparent;
-  border-left: 4px solid transparent;
+  content: ' ' !important;
+  position: absolute !important;
+  right: 13px !important;
+  top: 50% !important;
+  margin: -1px 0 0 !important;
+  border-top: 4px dashed !important;
+  border-top: 4px solid \9 !important;
+  border-right: 4px solid transparent !important;
+  border-left: 4px solid transparent !important;
 }
 .bs-searchbox {
-  position: relative;
-  margin: 4px 8px;
+  position: relative !important;
+  margin: 4px 8px !important;
 }
 .bs-searchbox .close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
-  display: block;
-  width: 34px;
-  height: 34px;
-  line-height: 34px;
-  text-align: center;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  z-index: 2 !important;
+  display: block !important;
+  width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+  text-align: center !important;
 }
 .bs-searchbox input:focus,
 .form-control.dropdown-toggle:focus {
-  outline: 0;
+  outline: 0 !important;
   border-color: #66afe9 !important;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6) !important;
 }
 .secret {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
 }
-.form-control.dropdown-toggle>.close { margin-left: 5px;}
-.notify.out { position: relative; }
+.form-control.dropdown-toggle>.close { margin-left: 5px !important;}
+.notify.out { position: relative !important; }
 .notify.in,
 .notify>div {
-  position: absolute;
-  width: 96%;
-  margin: 0 2%;
-  min-height: 26px;
-  padding: 3px 5px;
-  background: #f5f5f5;
-  border: 1px solid #e3e3e3;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
-  pointer-events: none;
+  position: absolute !important;
+  width: 96% !important;
+  margin: 0 2% !important;
+  min-height: 26px !important;
+  padding: 3px 5px !important;
+  background: #f5f5f5 !important;
+  border: 1px solid #e3e3e3 !important;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.05) !important;
+  pointer-events: none !important;
 }
 .notify>div {
-  top: 5px;
-  z-index: 1;
+  top: 5px !important;
+  z-index: 1 !important;
 }
 .notify.in {
-  opacity: .9;
-  bottom: 5px;
+  opacity: .9 !important;
+  bottom: 5px !important;
 }
 .btn-group-justified .dropdown-toggle>span:not(.close) {
-  width: calc(100% - 18px);
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  margin-bottom: -4px;
+  width: calc(100% - 18px) !important;
+  display: inline-block !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  margin-bottom: -4px !important;
 }
-.btn-group-justified .dropdown-menu { width: 100%; }
+.btn-group-justified .dropdown-menu { width: 100% !important; }
 </style>
-
