@@ -1,5 +1,5 @@
-<template>
-  <div role="dialog" :class="['modal',effect]" @click="backdrop&&action(false,1)" @transitionend="transition = false">
+﻿<template>
+  <div role="dialog" :class="['modal',effect,type]" @click="backdrop&&action(false,1)" @transitionend="transition = false">
     <div :class="['modal-dialog',{'modal-lg':large,'modal-sm':small}]" role="document" :style="{width: optionalWidth}" @click.stop="action(null)">
       <div class="modal-content">
         <slot name="modal-header">
@@ -27,8 +27,9 @@ export default {
   props: {
     backdrop: {type: Boolean, default: true},
     callback: {type: Function, default: null},
-    cancelText: {type: String, default: 'Close'},
-    effect: {type: String, default: null},
+    cancelText: { type: String, default: 'Close' },
+    effect: { type: String, default: null },
+    type: { type: String, default: null },
     large: {type: Boolean, default: false},
     okText: {type: String, default: 'Save changes'},
     small: {type: Boolean, default: false},
