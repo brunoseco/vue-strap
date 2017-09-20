@@ -1,5 +1,5 @@
-﻿<template>
-  <div role="dialog" :class="['modal',effect,type]" @click="backdrop&&action(false,1)" @transitionend="transition = false">
+<template>
+  <div role="dialog" :class="['modal',effect,type]" @click="backdrop&&action(false,1)" @transitionend="transition = false" style="display:none;">
     <div :class="['modal-dialog',{'modal-lg':large,'modal-sm':small}]" role="document" :style="{width: optionalWidth}" @click.stop="action(null)">
       <div class="modal-content">
         <slot name="modal-header">
